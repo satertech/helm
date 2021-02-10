@@ -14,18 +14,18 @@ spec:
     command: ['cat']
     tty:true
     volumeMounts:
-        -name: dockersock
-         mountPath: /var/run/docker.sock
-volumes:
-    - name: dockersock
-      mountPath: /var/run/docker.sock
+        - mountPath: "/home/jenkins"
+        name: "workspace-volume"
+        readOnly: false
+    workingDir: "/home/jenkins"
 nodeSelector:
-    beta.kubernetes.io/os: linux
-tolarations:
-    -key: cattle.io/os
-     operations: Equal
-     valu: linux
-     effect: NoSchedule
+    kubernetes.io/os: "linux"
+restartPolicy: "Never"
+serviceAccount: "default"
+volumes:
+- emptyDir:
+  medium: ""
+  name: "workspace-volume"
 
 """)
 
