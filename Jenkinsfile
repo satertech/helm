@@ -12,7 +12,7 @@ spec:
     - name: helm
     image: dtzar/helm-kubectl:3.4.0
     command: ['cat']
-    tty:true
+    tty: false
     volumeMounts:
         - mountPath: "/home/jenkins"
         name: "workspace-volume"
