@@ -1,8 +1,16 @@
-node{
+callContainer([name:"helm",image:"dtzar/helm-kubectl:3.4.0"]){
 
-    stage ('helm-deploy'){
+    node{
 
-        sh 'helm install example-app /kubernetes/helm/temp/example-app/'
+        stage ('deploy') {
+
+            container('helm'){
+
+                sh 'helm install example-app example-app/'
+
+
+            }
+        }
     }
 }
 
