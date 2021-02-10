@@ -1,9 +1,4 @@
-node(Node){
-
-    stage('git'){
-
-        sh 'git fetch'
-    }
+nod{
 
     stage ('helm-deploy'){
 
