@@ -8,7 +8,34 @@ metadata:
         jenkins/label: "jenkins-jenkins-slavex"
     name: "default-hdjp8"
 spec:
-    containers:
+  containers:
+  - args:
+    - "********"
+    - "default-hdjp8"
+    env:
+    - name: "JENKINS_SECRET"
+      value: "********"
+    - name: "JENKINS_TUNNEL"
+      value: "jenkins-agent:50000"
+    - name: "JENKINS_AGENT_NAME"
+      value: "default-hdjp8"
+    - name: "JENKINS_NAME"
+      value: "default-hdjp8"
+    - name: "JENKINS_AGENT_WORKDIR"
+      value: "/home/jenkins"
+    - name: "JENKINS_URL"
+      value: "http://jenkins.jenkins-project-2.svc.cluster.local:8080"
+    image: "jenkins/inbound-agent:4.3-4"
+    imagePullPolicy: "IfNotPresent"
+    name: "jnlp"
+    resources:
+      limits:
+        memory: "512Mi"
+        cpu: "512m"
+      requests:
+        memory: "512Mi"
+        cpu: "512m"
+        tty: false
     - name: helm
     image: dtzar/helm-kubectl:3.4.0
     command: ['cat']
