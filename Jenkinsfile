@@ -14,9 +14,9 @@ spec:
     command: ['cat']
     tty: false
     volumeMounts:
-        - mountPath: "/home/jenkins"
-        name: "workspace-volume"
-        readOnly: false
+        - mountPath: "/home/jenkins
+          name: "workspace-volume"
+          readOnly: false
     workingDir: "/home/jenkins"
 nodeSelector:
     kubernetes.io/os: "linux"
