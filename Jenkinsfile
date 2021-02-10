@@ -3,24 +3,28 @@ podTemplate(yaml: """\
     kind: Pod
     metadata:
       labels: 
-        some-label: some-label-value
+        some-label: example-app
     spec:
       containers:
       - name: helm
-        image: dtzar/helm-kubectl:3.4.0
+        image: dtzar/helm-kubectl:3.3.0
         command:
         - cat
         tty: true
     """.stripIndent()) {
         node(POD_LABEL) {
+            
+            stage('loadFiles') {
+                
+               checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/satertech/helm']]])
+            }
+            
 
             stage ('deploy') {
                 
                 container('helm') {
-
-                    sh 'git clone https://github.com/satertech/helm.git'
                     
-                    sh 'helm install example-app example-app/'
+                    sh label: '', script: 'helm upgrade --install --namespace=default example-app example-app/'
 
             }
         }
