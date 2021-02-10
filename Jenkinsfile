@@ -1,4 +1,4 @@
-podTemplate(cloud: 'kubernetes', yaml: """
+node(cloud: 'kubernetes', yaml: """
 apiVersion: v1
 kind: Pod
 metadata:
@@ -10,12 +10,12 @@ metadata:
 spec:
   containers:
     - name: helm
-      image: dtzar/helm-kubectl:3.4.0
-      command: ['cat']
-      tty: true
-      volumeMounts:
+    image: dtzar/helm-kubectl:3.4.0
+    command: ['cat']
+    tty: false
+    volumeMounts:
         - mountPath: /home/jenkins
-          name: workspace-volume
+          name: "workspace-volume"
           readOnly: false
     workingDir: /home/jenkins
 nodeSelector:
