@@ -3,9 +3,10 @@ apiVersion: v1
 kind: Pod
 metadata:
     labels:
-        jenkins/kube-default:true
-        app: jenkins
-        component: agent
+        jenkins/label-digest: "6ba93233d22ff0212c5c877dbc5afb06b7d3aafc"
+        jenkins/jenkins-jenkins-slave: "true"
+        jenkins/label: "jenkins-jenkins-slavex"
+    name: "default-hdjp8"
 spec:
     containers:
     - name: helm
